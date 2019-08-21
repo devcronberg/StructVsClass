@@ -7,15 +7,16 @@ namespace StructVsClass
     {
         static void Main(string[] args)
         {
-            for (int i = 0; i < 30; i++)
+            for (int i = 0; i < 20; i++)
             {
                 Console.WriteLine(TestStruct());
                 Console.WriteLine(TestClass());
                 Console.WriteLine();
+            }
+        }
 
-            }        }
-
-        static long TestStruct(int count = 1_000_000) {
+        static long TestStruct(int count = 1_000_000)
+        {
             var lst = new PointS[count];
             System.Diagnostics.Stopwatch s = new System.Diagnostics.Stopwatch();
             s.Start();
