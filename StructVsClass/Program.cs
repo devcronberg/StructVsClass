@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace StructVsClass
 {
@@ -7,15 +8,32 @@ namespace StructVsClass
     {
         static void Main(string[] args)
         {
-            for (int i = 0; i < 20; i++)
+
+            int count = 5_000_000;
+            int iterations = 10;
+
+            List<long> structResults = new List<long>();
+            List<long> classResults = new List<long>();
+
+            Console.WriteLine("Struct");
+            for (int i = 0; i < iterations; i++)
             {
-                Console.WriteLine(TestStruct());
-                Console.WriteLine(TestClass());
-                Console.WriteLine("");
+                structResults.Add(TestStruct(count));
+                Console.Write(".");
             }
+            Console.WriteLine($"\r\nms: {structResults.Sum() / iterations}");
+
+            Console.WriteLine("Class");
+            for (int i = 0; i < iterations; i++)
+            {
+                classResults.Add(TestClass(count));
+                Console.Write(".");
+            }
+            Console.WriteLine($"\r\nms: {classResults.Sum() / iterations}");
+
         }
 
-        static long TestStruct(int count = 1_000_000)
+        static long TestStruct(int count)
         {
             var lst = new PointS[count];
             System.Diagnostics.Stopwatch s = new System.Diagnostics.Stopwatch();
@@ -28,7 +46,7 @@ namespace StructVsClass
             return s.ElapsedMilliseconds;
         }
 
-        static long TestClass(int count = 1_000_000)
+        static long TestClass(int count)
         {
             var lst = new PointC[count];
             System.Diagnostics.Stopwatch s = new System.Diagnostics.Stopwatch();
