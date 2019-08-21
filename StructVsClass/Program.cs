@@ -11,7 +11,7 @@ namespace StructVsClass
             {
                 Console.WriteLine(TestStruct());
                 Console.WriteLine(TestClass());
-                Console.WriteLine();
+                Console.WriteLine("");
             }
         }
 
