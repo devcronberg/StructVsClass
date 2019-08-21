@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Running;
 
 namespace StructVsClass
 {
@@ -9,6 +11,8 @@ namespace StructVsClass
         static void Main(string[] args)
         {
 
+            var summary = BenchmarkRunner.Run<BenchMark>();
+            return;
             int count = 5_000_000;
             int iterations = 10;
 
